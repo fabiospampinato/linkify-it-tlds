@@ -18,7 +18,7 @@ import tlds from 'linkify-it-tlds';
 
 const instance = linkify ();
 
-instance.tlds ( tlds );
+instance.tlds ( tlds, true ); // It's important to pass "true", as that ensures the default TLDs will be still supported, as this package doesn't provide them
 ```
 
 ## License
