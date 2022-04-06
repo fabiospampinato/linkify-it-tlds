@@ -1,31 +1,40 @@
 
 /* IMPORT */
 
-const fs = require ( 'fs' ),
-      path = require ( 'path' ),
-      tlds = require ( 'tlds' );
+import fs from 'node:fs';
+import path from 'node:path';
 
 /* HELPERS */
 
-function stats ( tlds, category ) {
+const filter = tlds => {
+
+  return tlds.filter ( tld => tld.length >= 3 );
+
+};
+
+const get = () => {
+
+  const tldsPath = path.join ( process.cwd (), 'node_modules', 'tlds', 'index.json' );
+  const tldsContent = fs.readFileSync ( tldsPath, 'utf-8' );
+  const tlds = JSON.parse ( tldsContent );
+
+  return tlds;
+
+};
+
+const stats = ( tlds, category ) => {
 
   console.log ( `${category} - TLDs: ${tlds.length}` );
   console.log ( `${category} - Characters: ${tlds.join ( '' ).length}` );
 
-}
+};
 
-function filter ( tlds ) {
-
-  return tlds.filter ( tld => tld.length >= 3 );
-
-}
-
-function write ( tlds ) {
+const write = tlds => {
 
   const PATH = path.join ( process.cwd (), 'src', 'index.ts' );
 
   const SOURCE = `
-/* TLDS */
+/* MAIN */
 
 const tlds = ${JSON.stringify ( tlds )};
 
@@ -36,11 +45,13 @@ export default tlds;
 
   fs.writeFileSync ( PATH, SOURCE );
 
-}
+};
 
-/* UPDATE */
+/* MAIN */
 
-function update ( tlds ) {
+const update = () => {
+
+  let tlds = get ();
 
   stats ( tlds, 'Start' );
 
@@ -50,6 +61,6 @@ function update ( tlds ) {
 
   write ( tlds );
 
-}
+};
 
-update ( tlds );
+update ();
