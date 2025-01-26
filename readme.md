@@ -7,7 +7,7 @@ This is basically the same as [node-tls](https://github.com/stephenmathieson/nod
 ## Install
 
 ```sh
-npm install --save linkify-it-tlds
+npm install linkify-it-tlds
 ```
 
 ## Usage
@@ -15,6 +15,8 @@ npm install --save linkify-it-tlds
 ```ts
 import linkify from 'linkify-it';
 import tlds from 'linkify-it-tlds';
+
+// Let's add these TLDs to linkify-it
 
 const instance = linkify ();
 
