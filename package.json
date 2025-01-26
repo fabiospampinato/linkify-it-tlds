@@ -3,7 +3,7 @@
   "repository": "github:fabiospampinato/linkify-it-tlds",
   "description": "Comprehensive list of TLDs, sourced from ICANN, for linkify-it.",
   "license": "MIT",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "type": "module",
   "main": "dist/index.js",
   "exports": "./dist/index.js",
